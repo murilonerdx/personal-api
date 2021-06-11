@@ -1,19 +1,20 @@
 package one.digitalinovation.personalapi.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import one.digitalinovation.personalapi.enums.PhoneType;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Phone {
+public class Phone implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,4 +22,22 @@ public class Phone {
     @Enumerated(EnumType.STRING)
     private PhoneType type;
     private String number;
+
+    @ManyToOne()
+    private Person person;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Phone phone = (Phone) o;
+
+        return id != null && id.equals(phone.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 745010098;
+    }
 }
