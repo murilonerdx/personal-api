@@ -1,5 +1,6 @@
 package one.digitalinovation.personalapi.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -29,7 +30,8 @@ public class PersonDTO {
     @NotEmpty
     @CPF
     private String cpf;
-    private String birthDate;
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private LocalDate birthDate;
 
     @Valid
     private List<PhoneDTO> phones;
