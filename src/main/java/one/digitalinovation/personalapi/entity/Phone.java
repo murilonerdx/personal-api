@@ -23,10 +23,6 @@ public class Phone implements Serializable {
     private PhoneType type;
     private String number;
 
-    @ManyToOne()
-    private Person person;
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

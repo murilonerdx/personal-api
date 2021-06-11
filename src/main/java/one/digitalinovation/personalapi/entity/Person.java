@@ -29,7 +29,7 @@ public class Person implements Serializable {
     private LocalDate birthDate;
 
 
-    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Phone> phones = new ArrayList<>();
 
     @Override
